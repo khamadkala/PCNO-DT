@@ -1,0 +1,60 @@
+experiment:
+  name: pcno_dt_main
+  output_dir: outputs/main
+data:
+  root: data/hcc_tace_seg
+  manifest: data/hcc_tace_seg/manifest.csv
+  crop_shape: [128, 128, 128]
+  spacing: [1.0, 1.0, 1.0]
+  phases: [pre, arterial, portal, delayed]
+  workers: 8
+  validation_fraction: 0.2
+model:
+  branch_channels: [128, 256, 512, 1024]
+  branch_blocks: [2, 2, 2, 2]
+  rank: 256
+  trunk_width: 512
+  trunk_depth: 6
+  harmonics: 16
+  frequencies: [0.0333333333, 0.0111111111, 0.0055555556]
+  parameter_bounds:
+    diffusion: [0.01, 1.0]
+    proliferation: [0.001, 0.1]
+    young_modulus: [3.0, 50.0]
+    poisson_ratio: [0.45, 0.49]
+    arterial_fraction: [0.1, 0.9]
+    portal_fraction: [0.1, 0.9]
+physics:
+  collocation_points: 50000
+  residual_weights: [1.0, 1.0, 1.0]
+  rebalance_interval: 500
+  critical_stress: 50.0
+  body_force: 1.0
+  segmentation_weight: 0.1
+  density_threshold: 0.5
+synthetic:
+  trajectories: 10000
+  epochs: 200
+  batch_size: 32
+  learning_rate: 0.001
+  world_size: 4
+  warmup_steps: 5000
+  weight_decay: 0.00001
+  gradient_clip: 1.0
+clinical:
+  epochs: 120
+  batch_size: 8
+  learning_rate: 0.0001
+  world_size: 1
+  warmup_steps: 5000
+  weight_decay: 0.00001
+  gradient_clip: 1.0
+  patience: 20
+evaluation:
+  folds: 5
+  seeds: [0, 17, 42, 1729, 65535]
+  bootstrap_samples: 10000
+  alpha: 0.05
+  conformal_coverage: 0.90
+  deferral_threshold: 0.0012
+

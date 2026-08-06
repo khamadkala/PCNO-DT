@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools==70.1.0", "wheel==0.43.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pcno-dt"
+version = "1.0.0"
+description = "Physics-constrained neural operator digital twins for HCC trajectories"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+  "torch==2.3.1",
+  "numpy==1.26.4",
+  "scipy==1.13.1",
+  "pandas==2.2.2",
+  "nibabel==5.2.1",
+  "pydicom==2.4.4",
+  "SimpleITK==2.3.1",
+  "PyYAML==6.0.1",
+  "scikit-learn==1.5.0",
+  "lifelines==0.29.0",
+  "tqdm==4.66.4",
+]
+
+[project.scripts]
+pcno-train = "pcno_dt.cli.train:main"
+pcno-evaluate = "pcno_dt.cli.evaluate:main"
+pcno-prepare = "pcno_dt.cli.prepare:main"
+pcno-synthesize = "pcno_dt.cli.synthesize:main"
+
+[tool.setuptools.packages.find]
+where = ["code"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+packages = ["pcno_dt"]
+mypy_path = "code"
+

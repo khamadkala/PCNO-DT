@@ -1,0 +1,6 @@
+HCC-TACE-Seg | https://www.cancerimagingarchive.net/collection/hcc-tace-seg/ | CC BY 3.0 | verified 2026-08-06
+ATLAS | https://atlas-challenge.u-bourgogne.fr/ | research-use terms | verified 2026-08-06
+LiverHccSeg | https://zenodo.org/records/7957516 | CC BY 4.0 | verified 2026-08-06
+TCGA-LIHC | https://portal.gdc.cancer.gov/projects/TCGA-LIHC | NIH GDC terms | verified 2026-08-06
+3D-IRCADb-01 | https://www.ircad.fr/research-and-development/data-sets/liver-segmentation-3d-ircadb-01/ | research-use terms | verified 2026-08-06
+
